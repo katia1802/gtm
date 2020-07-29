@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 import "./App.scss";
+import {
+  Redirect,
+  Route,
+  Switch,
+  BrowserRouter as Router,
+} from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
+import Thankyou from "./pages/Thankyou";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirect: null,
       fullName: "",
       birthDate: new Date(),
       email: "",
@@ -28,10 +36,10 @@ class App extends Component {
         houseNumber: "",
         zipcode: "",
         file: "ok",
-        letter: "ok"
+        letter: "ok",
       },
       isModalOpen: false,
-      show: ""
+      show: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,7 +49,7 @@ class App extends Component {
 
   handleDate(date) {
     this.setState({
-      birthDate: date
+      birthDate: date,
     });
   }
 
@@ -60,8 +68,8 @@ class App extends Component {
 
       case "birthDate":
         formErrors.birthDate = RegExp(
+          // eslint-disable-next-line
           /^(((((((0?[13578])|(1[02]))[\.\-/]?((0?[1-9])|([12]\d)|(3[01])))|(((0?[469])|(11))[\.\-/]?((0?[1-9])|([12]\d)|(30)))|((0?2)[\.\-/]?((0?[1-9])|(1\d)|(2[0-8]))))[\.\-/]?((\d{2})?([\d][\d]))))|((0?2)[\.\-/]?(29)[\.\-/]?(((19)|(20))?(([02468][048])|([13579][26])))))$/
-          // /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
         ).test(value)
           ? "Perfect!"
           : "Enter DD/MM/YYYY birthdate format";
@@ -98,9 +106,9 @@ class App extends Component {
         break;
 
       case "zipcode":
-        formErrors.zipcode = RegExp(/^([0-9]{4}[ ]+[a-zA-Z]{2})$/).test(value)
+        formErrors.zipcode = RegExp(/^(?:(?:[1-9])(?:\d{3}))$/).test(value)
           ? "Perfect!"
-          : "Please enter a valid dutch zipcode";
+          : "Please enter a valid belgium zipcode";
         break;
 
       default:
@@ -109,7 +117,7 @@ class App extends Component {
     this.setState(
       {
         formErrors,
-        [name]: value
+        [name]: value,
       },
       () => console.log()
     );
@@ -129,36 +137,40 @@ class App extends Component {
       this.state.formErrors.file === "ok" &&
       this.state.formErrors.letter === "ok"
     ) {
-      Swal.fire(
-        "Thanks for submitting!",
-        "We will contact you soon!",
-        "success"
-      );
+      this.setState({ redirect: "/thankyou" });
     } else {
       Swal.fire({
         type: "error",
         title: "Oops...",
-        text: "Something went wrong!"
+        text: "Something went wrong!",
       });
     }
   }
 
   render() {
     return (
-      <body>
+      <Router>
+        {this.state.redirect && <Redirect to={this.state.redirect} />}
         <div className="App">
           <Header />
           <main>
-            <Form
-              state={this.state}
-              onChange={this.handleChange}
-              onSubmit={this.handleSubmit}
-              onHandleDate={this.handleDate}
-            />
+            <Switch>
+              <Route exact path="/">
+                <Form
+                  state={this.state}
+                  onChange={this.handleChange}
+                  onSubmit={this.handleSubmit}
+                  onHandleDate={this.handleDate}
+                />
+              </Route>
+              <Route path="/thankyou">
+                <Thankyou />
+              </Route>
+            </Switch>
           </main>
           <Footer />
         </div>
-      </body>
+      </Router>
     );
   }
 }

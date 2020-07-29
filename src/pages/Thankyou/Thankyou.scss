@@ -1,0 +1,22 @@
+@import "../../assets/core/setting";
+
+.thankyou-title {
+  margin: 100px;
+  font-family: $fontText;
+  color: $darkGreen;
+  display: block;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media all and (min-width: 500px) {
+  .wrapper-padding {
+    font-size: $fontSuperBig;
+  }
+}
+
+@media all and (min-width: 1400px) {
+  .wrapper-padding {
+    font-size: $fontMedium;
+  }
+}
