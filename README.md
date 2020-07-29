@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# gtm
+>>>>>>> 958c7636baee6a2e64da8722df206a4ae0be9f39
 How to use this repo?
 
 This project was bootstrapped with Create React App. In order to make it work, first you need to have a package manager installed, such as npm in Node.js or Yarn. Then you'll need to install create-react-app globally:
