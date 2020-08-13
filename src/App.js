@@ -84,12 +84,12 @@ class App extends Component {
             : "Invalid email address";
         break;
 
-      case "gender":
-        formErrors.gender =
-          RegExp(/^male$||^female$/).test(value) && value.length > 0
-            ? "Perfect!"
-            : "Please choose a gender";
-        break;
+      // case "gender":
+      //   formErrors.gender =
+      //     RegExp(/^male$||^female$/).test(value) && value.length > 0
+      //       ? "Perfect!"
+      //       : "Please choose a gender";
+      //   break;
 
       case "address":
         formErrors.address =
@@ -98,12 +98,12 @@ class App extends Component {
             : "Perfect!";
         break;
 
-      case "houseNumber":
-        formErrors.houseNumber =
-          RegExp(/^[0-9]*$/).test(value) && value.length > 0
-            ? "Perfect!"
-            : "Numeric characters required";
-        break;
+      // case "houseNumber":
+      //   formErrors.houseNumber =
+      //     RegExp(/^[0-9]*$/).test(value) && value.length > 0
+      //       ? "Perfect!"
+      //       : "Numeric characters required";
+      //   break;
 
       case "zipcode":
         formErrors.zipcode = RegExp(/^(?:(?:[1-9])(?:\d{3}))$/).test(value)
@@ -130,9 +130,9 @@ class App extends Component {
       this.state.formErrors.fullName === "Perfect!" &&
       this.state.formErrors.birthDate === "" &&
       this.state.formErrors.email === "Perfect!" &&
-      this.state.formErrors.gender === "Perfect!" &&
+      // this.state.formErrors.gender === "Perfect!" &&
       this.state.formErrors.address === "Perfect!" &&
-      this.state.formErrors.houseNumber === "Perfect!" &&
+      // this.state.formErrors.houseNumber === "Perfect!" &&
       this.state.formErrors.zipcode === "Perfect!" &&
       this.state.formErrors.file === "ok" &&
       this.state.formErrors.letter === "ok"
