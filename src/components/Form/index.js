@@ -29,7 +29,7 @@ class Form extends Component {
                 name="fullName"
                 value={state.fullName}
                 onChange={onChange}
-                placeholder="Katia Rojas Sandoval"
+                placeholder="Your name"
                 required
               />
               <div className="form-message">{state.formErrors.fullName}</div>
@@ -45,7 +45,7 @@ class Form extends Component {
                 type="email"
                 value={state.email}
                 onChange={onChange}
-                placeholder="hola@endouble.com"
+                placeholder="hellostitchd@stitchd.com"
                 required
               />
               <div className="form-message">{state.formErrors.email}</div>
@@ -81,16 +81,12 @@ class Form extends Component {
 
               {/* gender */}
               <div className="form-gender form-item">
-                <label className="form-label">
-                  Gender<span className="form-asterisk"> *</span>
-                </label>
-
+                <label className="form-label">Gender</label>
                 <select
                   className="form-field"
                   name="gender"
                   value={state.value}
                   onChange={onChange}
-                  required
                 >
                   <option>Choose your gender</option>
                   <option>Female</option>
