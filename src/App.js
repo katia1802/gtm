@@ -4,7 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
-  BrowserRouter as Router,
+  HashRouter as Router,
 } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "./components/Header";
