@@ -90,7 +90,6 @@ class App extends Component {
       //       ? "Perfect!"
       //       : "Please choose a gender";
       //   break;
-
       case "address":
         formErrors.address =
           value.length < 2 && value.length > 0
@@ -124,6 +123,8 @@ class App extends Component {
   }
 
   handleSubmit(e) {
+    window.defineDimensionAndEvent();
+
     console.log(this.state.formErrors);
     e.preventDefault();
     if (
